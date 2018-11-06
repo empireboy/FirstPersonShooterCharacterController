@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CM.Movement
 {
@@ -12,9 +13,14 @@ namespace CM.Movement
 		[SerializeField] private string _horizontalAxis = "Horizontal";
 		[SerializeField] private string _verticalAxis = "Vertical";
 
+		[SerializeField] private UnityEvent _onMoveStart;
+		[SerializeField] private UnityEvent _onMoveStop;
+
 		private Rigidbody _rigidbody;
 		private Vector3 _inputs = Vector3.zero;
-		
+		private float _previousInputMagnitude;
+		private bool _isMoving = false;
+
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
@@ -25,6 +31,19 @@ namespace CM.Movement
 			_inputs = Vector3.zero;
 			_inputs.x = Input.GetAxis(_horizontalAxis);
 			_inputs.z = Input.GetAxis(_verticalAxis);
+
+			if ((_inputs.magnitude > _previousInputMagnitude || _inputs.magnitude >= 1) && !_isMoving)
+				_onMoveStart.Invoke();
+
+			if ((_inputs.magnitude < _previousInputMagnitude || _inputs.magnitude <= 0) && _isMoving)
+			{
+				_onMoveStop.Invoke();
+				Debug.Log("STOP MOVE");
+			}
+
+			_isMoving = (_inputs.magnitude > _previousInputMagnitude || _inputs.magnitude >= 1) ? true : false;
+
+			_previousInputMagnitude = _inputs.magnitude;
 		}
 
 		private void FixedUpdate()

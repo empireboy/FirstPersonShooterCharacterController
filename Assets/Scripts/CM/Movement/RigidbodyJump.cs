@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CM.Movement
 {
@@ -14,9 +15,13 @@ namespace CM.Movement
 		[SerializeField] private Transform _groundChecker;
 		[SerializeField] private string _jumpKey = "Jump";
 
+		[SerializeField] private UnityEvent _onJumpStart;
+		[SerializeField] private UnityEvent _onJumpStop;
+
 		private Rigidbody _rigidbody;
 		private bool _isGrounded = true;
-		
+		private bool _isJumping = false;
+
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
@@ -29,7 +34,15 @@ namespace CM.Movement
 			if (Input.GetButtonDown("Jump") && _isGrounded)
 			{
 				_rigidbody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+				_onJumpStart.Invoke();
 			}
+
+			if (_isJumping && _isGrounded)
+			{
+				_onJumpStop.Invoke();
+			}
+
+			_isJumping = (!_isGrounded) ? true : false;
 		}
 	}
 }
