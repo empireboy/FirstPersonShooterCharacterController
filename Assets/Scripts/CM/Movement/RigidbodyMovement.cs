@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace CM.Movement
@@ -38,7 +36,6 @@ namespace CM.Movement
 			if ((_inputs.magnitude < _previousInputMagnitude || _inputs.magnitude <= 0) && _isMoving)
 			{
 				_onMoveStop.Invoke();
-				Debug.Log("STOP MOVE");
 			}
 
 			_isMoving = (_inputs.magnitude > _previousInputMagnitude || _inputs.magnitude >= 1) ? true : false;
