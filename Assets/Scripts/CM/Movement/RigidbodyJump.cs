@@ -19,12 +19,14 @@ namespace CM.Movement
 		[SerializeField] private UnityEvent _onJumpStop;
 
 		private Rigidbody _rigidbody;
+		private Animator _animator;
 		private bool _isGrounded = true;
-		private bool _isJumping = false;
+		private bool _isJumpingPrevious = false;
 
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
+			_animator = GetComponent<Animator>();
 		}
 
 		private void Update()
@@ -37,12 +39,15 @@ namespace CM.Movement
 				_onJumpStart.Invoke();
 			}
 
-			if (_isJumping && _isGrounded)
+			if (_isJumpingPrevious && _isGrounded)
 			{
 				_onJumpStop.Invoke();
 			}
 
-			_isJumping = (!_isGrounded) ? true : false;
+			_isJumpingPrevious = (!_isGrounded) ? true : false;
+
+			if (_animator)
+				_animator.SetBool("IsGrounded", _isGrounded);
 		}
 	}
 }
