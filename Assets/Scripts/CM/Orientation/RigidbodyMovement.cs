@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CM.Movement
+namespace CM.Orientation
 {
 	[RequireComponent(typeof(Rigidbody))]
 	public class RigidbodyMovement : RigidbodyMovementBase

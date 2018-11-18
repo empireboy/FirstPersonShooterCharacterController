@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Events;
 using UnityEngine;
 
-namespace CM.Movement
+namespace CM.Orientation
 {
 	public class RigidbodyMovementEvents : RigidbodyMovementBase
 	{

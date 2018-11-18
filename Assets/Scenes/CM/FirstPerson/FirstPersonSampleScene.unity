@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.1
   m_LinearFogStart: 0
   m_LinearFogEnd: 20
-  m_AmbientSkyColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0.5999999, b: 1, a: 1}
   m_AmbientGroundColor: {r: 1, g: 0, b: 0.06640482, a: 1}
   m_AmbientIntensity: 1
@@ -26682,6 +26682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cadf5be7342b9b4ea8eb205e69317e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isMovingParam: IsMoving
 --- !u!114 &1667704434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31003,6 +31004,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1896192794}
+  - component: {fileID: 1896192795}
+  - component: {fileID: 1896192796}
   m_Layer: 8
   m_Name: Arms
   m_TagString: Weapon
@@ -31017,14 +31020,42 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1896192793}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.09, z: 0.44}
+  m_LocalRotation: {x: 0.0036651543, y: -0.0048868903, z: 0.000017911541, w: 0.9999814}
+  m_LocalPosition: {x: 0.14, y: -0.13, z: 0.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 651637793}
   m_Father: {fileID: 534669905}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.42, y: -0.56, z: 0}
+--- !u!114 &1896192795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896192793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a05689e0d38e2e41a22c6bd948bfed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionSpeed: 10
+  rotationSpeed: 10
+  _targetPosition: {x: 0.13, y: -0.08, z: 0.41}
+  _targetRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &1896192796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896192793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d98582d2f21d734a979f4b58f56c64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aimPosition: {x: 0, y: -0.04, z: 0.3}
+  _aimRotation: {x: 1, y: 0, z: 0}
 --- !u!1 &1901852426
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace CM.Movement
+namespace CM.Orientation
 {
 	[RequireComponent(typeof(Rigidbody))]
 	public class RigidbodyJump : MonoBehaviour

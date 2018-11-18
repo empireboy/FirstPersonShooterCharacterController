@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CM.Movement
+namespace CM.Orientation
 {
 	public abstract class RigidbodyMovementBase : MonoBehaviour
 	{
