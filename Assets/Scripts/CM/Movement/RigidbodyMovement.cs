@@ -1,67 +1,49 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace CM.Movement
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class RigidbodyMovement : MonoBehaviour
+	public class RigidbodyMovement : RigidbodyMovementBase
 	{
-		public float speed = 5f;
+		[SerializeField] private float _speed = 5f;
 
-		[SerializeField] private string _horizontalAxis = "Horizontal";
-		[SerializeField] private string _verticalAxis = "Vertical";
-
-		private Vector3 _inputs = Vector3.zero;
-		private float _previousInputMagnitude = 0;
-		protected bool isMoving = false;
-		public bool IsMoving
-		{
-			get
-			{
-				return isMoving;
-			}
-		}
-
-		[SerializeField] private UnityEvent _onMoveStart;
-		[SerializeField] private UnityEvent _onMoveStop;
+		private bool _isInputMagnitudeGettingBigger = false;
+		private bool _isInputMagnitudeGettingSmaller = false;
+		private float _previousInputMagnitude;
 
 		private Rigidbody _rigidbody;
-		private Animator _animator;
 
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
-			_animator = GetComponent<Animator>();
+		}
+
+		private void Start()
+		{
+			speed = _speed;
 		}
 
 		private void Update()
 		{
-			_inputs = Vector3.zero;
-			_inputs.x = Input.GetAxis(_horizontalAxis);
-			_inputs.z = Input.GetAxis(_verticalAxis);
+			_isInputMagnitudeGettingBigger = (inputs.magnitude > _previousInputMagnitude && !Mathf.Approximately(inputs.magnitude, _previousInputMagnitude) || inputs.magnitude >= 1);
+			_isInputMagnitudeGettingSmaller = (inputs.magnitude < _previousInputMagnitude && !Mathf.Approximately(inputs.magnitude, _previousInputMagnitude) || inputs.magnitude <= 0);
 
-			bool biggerMagnitude = (_inputs.magnitude > _previousInputMagnitude && !Mathf.Approximately(_inputs.magnitude, _previousInputMagnitude) || _inputs.magnitude >= 1);
-			bool smallerMagnitude = (_inputs.magnitude < _previousInputMagnitude && !Mathf.Approximately(_inputs.magnitude, _previousInputMagnitude) || _inputs.magnitude <= 0);
+			if (_isInputMagnitudeGettingBigger && !IsMoving)
+				OnMoveStart();
 
-			if (biggerMagnitude && !IsMoving)
-				_onMoveStart.Invoke();
+			if (_isInputMagnitudeGettingSmaller && IsMoving)
+				OnMoveStop();
 
-			if (smallerMagnitude && IsMoving)
-				_onMoveStop.Invoke();
+			isMoving = (inputs.magnitude > _previousInputMagnitude || inputs.magnitude >= 1) ? true : false;
 
-			isMoving = (_inputs.magnitude > _previousInputMagnitude || _inputs.magnitude >= 1) ? true : false;
+			inputs = transform.TransformDirection(inputs);
 
-			if (_animator)
-				_animator.SetBool("IsMoving", IsMoving);
-
-			_inputs = transform.TransformDirection(_inputs);
-
-			_previousInputMagnitude = _inputs.magnitude;
+			_previousInputMagnitude = inputs.magnitude;
 		}
 
 		private void FixedUpdate()
 		{
-			_rigidbody.MovePosition(_rigidbody.position + _inputs * speed * Time.fixedDeltaTime);
+			_rigidbody.MovePosition(_rigidbody.position + inputs * speed * Time.fixedDeltaTime);
 		}
 	}
 }
