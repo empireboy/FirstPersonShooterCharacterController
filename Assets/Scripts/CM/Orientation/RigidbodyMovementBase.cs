@@ -17,11 +17,6 @@ namespace CM.Orientation
 			{
 				return isMoving;
 			}
-
-			set
-			{
-				isMoving = value;
-			}
 		}
 
 		protected virtual void OnMoveStart() { }

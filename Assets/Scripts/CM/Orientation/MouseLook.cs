@@ -9,7 +9,9 @@ namespace CM.Movement
 	{
 		public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 		public RotationAxes rotationAxes = RotationAxes.MouseXAndY;
-		public Vector2 sensivity = new Vector2(2f, 2f);
+		[SerializeField] private Vector2 _sensitivity = new Vector2(2f, 2f);
+		private Vector2 _currentSensitivity;
+		private Vector2 _sensitivityMultiplier = new Vector2(1, 1);
 		[Header("Mouse Y Properties")]
 		public float clampYMin = -70;
 		public float clampYMax = 70;
@@ -26,6 +28,8 @@ namespace CM.Movement
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+
+			_currentSensitivity = _sensitivity;
 		}
 
 		private void Update()
@@ -37,8 +41,8 @@ namespace CM.Movement
 				y = (invertY) ? -1 : 1
 			};
 
-			rotation.x += (axes.x * sensivity.x) * invert.x;
-			rotation.y += (axes.y * sensivity.y) * invert.y;
+			rotation.x += (axes.x * (_currentSensitivity.x * _sensitivityMultiplier.x)) * invert.x;
+			rotation.y += (axes.y * (_currentSensitivity.y * _sensitivityMultiplier.y)) * invert.y;
 
 			rotation.y = Mathf.Clamp(rotation.y, clampYMin, clampYMax);
 
@@ -54,6 +58,46 @@ namespace CM.Movement
 					transform.localEulerAngles = new Vector3(rotation.y, 0, 0);
 					break;
 			}
+		}
+
+		public void SetSensitivity(Vector2 sensivity)
+		{
+			_currentSensitivity = sensivity;
+		}
+
+		public void SetSensitivityX(float sensivity)
+		{
+			_currentSensitivity.x = sensivity;
+		}
+
+		public void SetSensitivityY(float sensivity)
+		{
+			_currentSensitivity.y = sensivity;
+		}
+
+		public void ResetSensitivity()
+		{
+			_currentSensitivity = _sensitivity;
+		}
+
+		public void SetSensitivityMultiplier(Vector2 sensitivityMultiplier)
+		{
+			_sensitivityMultiplier = sensitivityMultiplier;
+		}
+
+		public void SetSensitivityMultiplierX(float sensitivityMultiplier)
+		{
+			_sensitivityMultiplier.x = sensitivityMultiplier;
+		}
+
+		public void SetSensitivityMultiplierY(float sensitivityMultiplier)
+		{
+			_sensitivityMultiplier.y = sensitivityMultiplier;
+		}
+
+		public void ResetSensitivityMultiplier()
+		{
+			_sensitivityMultiplier = new Vector2(1, 1);
 		}
 	}
 }

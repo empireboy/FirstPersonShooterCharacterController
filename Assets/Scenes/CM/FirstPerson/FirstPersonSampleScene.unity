@@ -8208,7 +8208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAxes: 2
-  sensivity: {x: 2, y: 2}
+  _sensitivity: {x: 2, y: 2}
   clampYMin: -70
   clampYMax: 70
   invertY: 1
@@ -14898,6 +14898,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949076190}
+  - component: {fileID: 949076192}
+  - component: {fileID: 949076191}
   m_Layer: 8
   m_Name: Weapon01
   m_TagString: Untagged
@@ -14921,6 +14923,28 @@ Transform:
   m_Father: {fileID: 651637793}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0.0139999995, y: -0.009, z: -0.0001}
+--- !u!114 &949076191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ee5cf269678e649b7aefbd60e93233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &949076192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfa2984512801346a081e71441bd490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &954034634
 GameObject:
   m_ObjectHideFlags: 0
@@ -26639,7 +26663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAxes: 1
-  sensivity: {x: 2, y: 2}
+  _sensitivity: {x: 2, y: 2}
   clampYMin: -70
   clampYMax: 70
   invertY: 0
@@ -26683,6 +26707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMovingParam: IsMoving
+  _walkSpeedMultiplierParam: WalkSpeedMultiplier
 --- !u!114 &1667704434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31043,6 +31068,9 @@ MonoBehaviour:
   rotationSpeed: 10
   _targetPosition: {x: 0.13, y: -0.08, z: 0.41}
   _targetRotation: {x: 0, y: 0, z: 0}
+  _sway: 1
+  swayAmount: {x: 0.02, y: 0.02}
+  maxSwayAmount: {x: 0.02, y: 0.02}
 --- !u!114 &1896192796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31056,6 +31084,126 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimPosition: {x: 0, y: -0.04, z: 0.3}
   _aimRotation: {x: 1, y: 0, z: 0}
+  _onAimStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1667704431}
+        m_MethodName: SetSpeed
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1667704433}
+        m_MethodName: SetWalkSpeedMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1896192795}
+        m_MethodName: Sway
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 534669906}
+        m_MethodName: SetSensitivityMultiplierY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1667704430}
+        m_MethodName: SetSensitivityMultiplierX
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _onAimStop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1667704431}
+        m_MethodName: ResetSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1667704433}
+        m_MethodName: ResetWalkSpeedMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1896192795}
+        m_MethodName: Sway
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 534669906}
+        m_MethodName: ResetSensitivityMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1667704430}
+        m_MethodName: ResetSensitivityMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1901852426
 GameObject:
   m_ObjectHideFlags: 0
