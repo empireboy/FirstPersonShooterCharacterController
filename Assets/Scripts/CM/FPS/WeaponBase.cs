@@ -4,7 +4,13 @@ namespace CM.FPS
 {
 	public abstract class WeaponBase : MonoBehaviour
 	{
-		protected virtual void OnReload() { }
-		protected virtual void OnShoot() { }
+		protected static bool isShooting = false;
+		public static bool IsShooting
+		{
+			get
+			{
+				return isShooting;
+			}
+		}
 	}
 }

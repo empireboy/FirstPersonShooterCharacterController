@@ -6,10 +6,7 @@ namespace CM.FPS
 	{
 		private void Update()
 		{
-			if (Input.GetButton("Fire1"))
-			{
-				OnShoot();
-			}
+			isShooting = (Input.GetButton("Fire1")) ? true : false;
 		}
 	}
 }
