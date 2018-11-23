@@ -1,4 +1,4 @@
-# First Person Character Controller
+# FPS Character Controller
 <!---
 Hier komt een korte beschrijving van de proefopdracht. Wat heb je precies gedaan?
 -->
