@@ -7,15 +7,19 @@ namespace CM.Orientation
 	{
 		[SerializeField] private float _speed = 5f;
 
+		private Vector3 _input = Vector3.zero;
+
 		private bool _isInputMagnitudeGettingBigger = false;
 		private bool _isInputMagnitudeGettingSmaller = false;
 		private float _previousInputMagnitude;
 
 		private Rigidbody _rigidbody;
+		private IInput _inputManager;
 
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
+			_inputManager = GetComponent<IInput>();
 		}
 
 		private void Start()
@@ -25,14 +29,16 @@ namespace CM.Orientation
 
 		private void Update()
 		{
-			isMoving = (inputs.magnitude > _previousInputMagnitude || inputs.magnitude >= 1) ? true : false;
+			_input = _inputManager.GetInput();
 
-			inputs = transform.TransformDirection(inputs);
+			isMoving = (_input.magnitude > _previousInputMagnitude || _input.magnitude >= 1) ? true : false;
+
+			_input = transform.TransformDirection(_input);
 		}
 
 		private void FixedUpdate()
 		{
-			_rigidbody.MovePosition(_rigidbody.position + inputs * speed * Time.fixedDeltaTime);
+			_rigidbody.MovePosition(_rigidbody.position + _input * speed * Time.fixedDeltaTime);
 		}
 
 		public void SetSpeed(float spd)
@@ -45,4 +51,9 @@ namespace CM.Orientation
 			speed = _speed;
 		}
 	}
+}
+
+interface IInput
+{
+	Vector3 GetInput();
 }

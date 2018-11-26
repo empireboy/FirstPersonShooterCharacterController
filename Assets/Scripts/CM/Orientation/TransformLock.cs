@@ -11,6 +11,11 @@ namespace CM.Orientation
 		[SerializeField] private Vector3 _targetPosition;
 		[SerializeField] private Vector3 _targetRotation;
 
+		[SerializeField] private Vector3 _targetPositionRandomizer;
+		[SerializeField] private Vector3 _targetRotationRandomizer;
+		[SerializeField] private float _randomPositionSpeed;
+		[SerializeField] private float _randomRotationSpeed;
+
 		[Header("Sway Transform")]
 		[SerializeField] private bool _sway = false;
 		[ShowIf("_sway")]
@@ -20,6 +25,12 @@ namespace CM.Orientation
 
 		private Vector3 _targetPositionStart;
 		private Vector3 _targetRotationStart;
+
+		private Vector3 _targetPositionRandom;
+		private Vector3 _targetRotationRandom;
+
+		private Vector3 _currentRandomPosition = Vector3.zero;
+		private Vector3 _currentRandomRotation = Vector3.zero;
 
 		private void Start()
 		{
@@ -40,8 +51,11 @@ namespace CM.Orientation
 				swayPosition = new Vector3(swayX, swayY, 0);
 			}
 
-			transform.localPosition = Vector3.Lerp(transform.localPosition, _targetPosition + swayPosition, Time.deltaTime * positionSpeed);
-			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_targetRotation), Time.deltaTime * rotationSpeed);
+			_currentRandomPosition = Vector3.Lerp(_currentRandomPosition, _targetPositionRandom, Time.deltaTime * _randomPositionSpeed);
+			_currentRandomRotation = Vector3.Lerp(_currentRandomRotation, _targetRotationRandom, Time.deltaTime * _randomRotationSpeed);
+
+			transform.localPosition = Vector3.Lerp(transform.localPosition, _targetPosition + swayPosition + _currentRandomPosition, Time.deltaTime * positionSpeed);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_targetRotation + _targetRotationRandom), Time.deltaTime * rotationSpeed);
 		}
 
 		public void SetPosition(Vector3 position)
@@ -73,6 +87,26 @@ namespace CM.Orientation
 		public void Sway(bool sway)
 		{
 			_sway = sway;
+		}
+
+		public void UpdateRandomTransform()
+		{
+			_targetPositionRandom = new Vector3(
+				Random.Range(-_targetPositionRandomizer.x, _targetPositionRandomizer.x),
+				Random.Range(-_targetPositionRandomizer.y, _targetPositionRandomizer.y),
+				Random.Range(-_targetPositionRandomizer.z, _targetPositionRandomizer.z)
+			);
+			_targetRotationRandom = new Vector3(
+				Random.Range(-_targetRotationRandomizer.x, _targetRotationRandomizer.x),
+				Random.Range(-_targetRotationRandomizer.y, _targetRotationRandomizer.y),
+				Random.Range(-_targetRotationRandomizer.z, _targetRotationRandomizer.z)
+			);
+		}
+
+		public void ResetRandomizer()
+		{
+			_targetPositionRandom = Vector3.zero;
+			_targetRotationRandom = Vector3.zero;
 		}
 	}
 }

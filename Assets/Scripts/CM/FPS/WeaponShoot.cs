@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CM.Orientation;
 
 namespace CM.FPS
 {
@@ -9,6 +10,7 @@ namespace CM.FPS
 		[SerializeField] private AudioSource _shootSound;
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
+		[SerializeField] private TransformLock _weaponTransformLock;
 
 		private float _shootTimer = 0;
 
@@ -27,14 +29,14 @@ namespace CM.FPS
 		{
 			if (_shootTimer < _shootRate) return;
 
-			Debug.Log("Shooting");
-
 			RaycastHit hit;
 
 			if (Physics.Raycast(_shootPoint.position, _shootPoint.transform.forward, out hit, _shootRange))
 			{
 				Destroy(hit.transform.gameObject);
 			}
+
+			_weaponTransformLock.UpdateRandomTransform();
 
 			_shootSound.Play();
 			_muzzleFlash.Play();

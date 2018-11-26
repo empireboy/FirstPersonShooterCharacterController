@@ -15065,6 +15065,7 @@ MonoBehaviour:
   _shootSound: {fileID: 949076193}
   _shootRate: 0.1
   _shootRange: 100
+  _weaponTransformLock: {fileID: 1896192795}
 --- !u!114 &949076192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15076,6 +15077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfa2984512801346a081e71441bd490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponTransformLock: {fileID: 1896192795}
 --- !u!82 &949076193
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26833,6 +26835,7 @@ GameObject:
   - component: {fileID: 1667704428}
   - component: {fileID: 1667704427}
   - component: {fileID: 1667704426}
+  - component: {fileID: 1667704435}
   - component: {fileID: 1667704432}
   - component: {fileID: 1667704431}
   - component: {fileID: 1667704433}
@@ -27037,6 +27040,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1667704435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1667704423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7227b629abc3674da2897018faeaec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1668605784
 GameObject:
   m_ObjectHideFlags: 0
@@ -31408,6 +31422,10 @@ MonoBehaviour:
   rotationSpeed: 20
   _targetPosition: {x: 0.13, y: -0.08, z: 0.41}
   _targetRotation: {x: 0, y: 0, z: 0}
+  _targetPositionRandomizer: {x: 0, y: 0.002, z: 0.005}
+  _targetRotationRandomizer: {x: 0, y: 0, z: 0}
+  _randomPositionSpeed: 30
+  _randomRotationSpeed: 0
   _sway: 1
   swayAmount: {x: 0.02, y: 0.02}
   maxSwayAmount: {x: 0.02, y: 0.02}
