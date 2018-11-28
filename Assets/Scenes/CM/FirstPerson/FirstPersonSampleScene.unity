@@ -15023,6 +15023,8 @@ GameObject:
   - component: {fileID: 949076190}
   - component: {fileID: 949076192}
   - component: {fileID: 949076191}
+  - component: {fileID: 949076194}
+  - component: {fileID: 949076195}
   - component: {fileID: 949076193}
   m_Layer: 8
   m_Name: Weapon01
@@ -15065,7 +15067,9 @@ MonoBehaviour:
   _shootSound: {fileID: 949076193}
   _shootRate: 0.1
   _shootRange: 100
+  _ammo: 25
   _weaponTransformLock: {fileID: 1896192795}
+  animator: {fileID: 651637794}
 --- !u!114 &949076192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15173,6 +15177,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &949076194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240f63c154de92c40b00b39a14857b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 651637794}
+--- !u!114 &949076195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bb6e304770b3646805a9a816b48dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 651637794}
 --- !u!1 &954034634
 GameObject:
   m_ObjectHideFlags: 0

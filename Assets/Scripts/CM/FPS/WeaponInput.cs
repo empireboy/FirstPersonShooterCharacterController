@@ -11,7 +11,11 @@ namespace CM.FPS
 		{
 			isShooting = (Input.GetButton("Fire1")) ? true : false;
 
-			if (Input.GetButtonUp("Fire1")) _weaponTransformLock.ResetRandomizer();
+			if (Input.GetButtonUp("Fire1"))
+				_weaponTransformLock.ResetRandomizer();
+
+			if (Input.GetButtonDown("Reload"))
+				SendMessage("OnReload", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
