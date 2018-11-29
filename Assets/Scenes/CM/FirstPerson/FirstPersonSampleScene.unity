@@ -15024,6 +15024,7 @@ GameObject:
   - component: {fileID: 949076192}
   - component: {fileID: 949076191}
   - component: {fileID: 949076196}
+  - component: {fileID: 949076197}
   - component: {fileID: 949076194}
   - component: {fileID: 949076195}
   - component: {fileID: 949076193}
@@ -15212,6 +15213,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSound: {fileID: 949076193}
+--- !u!114 &949076197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a9ff948ca0bba48b38eaabc46fa8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _muzzleFlash: {fileID: 984550171}
 --- !u!1 &954034634
 GameObject:
   m_ObjectHideFlags: 0

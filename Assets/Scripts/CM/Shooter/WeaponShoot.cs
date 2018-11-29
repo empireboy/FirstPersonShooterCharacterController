@@ -6,8 +6,6 @@ namespace CM.Shooter
 	public class WeaponShoot : WeaponBase
 	{
 		[SerializeField] private Transform _shootPoint;
-		[SerializeField] private ParticleSystem _muzzleFlash;
-		//[SerializeField] private AudioSource _shootSound;
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private float _ammo = 25;
@@ -55,9 +53,6 @@ namespace CM.Shooter
 			}
 
 			_weaponTransformLock.UpdateRandomTransform();
-
-			//_shootSound.Play();
-			_muzzleFlash.Play();
 
 			_shootTimer = 0;
 		}
