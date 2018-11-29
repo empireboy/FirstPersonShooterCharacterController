@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CM.FPS
+namespace CM.Shooter
 {
 	public abstract class WeaponBase : MonoBehaviour
 	{

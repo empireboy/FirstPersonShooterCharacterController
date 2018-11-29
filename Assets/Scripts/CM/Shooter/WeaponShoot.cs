@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using CM.Orientation;
 
-namespace CM.FPS
+namespace CM.Shooter
 {
 	public class WeaponShoot : WeaponBase
 	{
@@ -16,9 +16,12 @@ namespace CM.FPS
 		private float _shootTimer = 0;
 		private float _currentAmmo;
 
-		[SerializeField] private Animator animator;
+		private WeaponReload _weaponReload;
 
-		private bool _isReloading;
+		private void Awake()
+		{
+			_weaponReload = GetComponent<WeaponReload>();
+		}
 
 		private void Start()
 		{
@@ -27,32 +30,13 @@ namespace CM.FPS
 
 		private void Update()
 		{
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Reload") && !_isReloading)
-			{
-				_isReloading = true;
-			}
-
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && _isReloading)
-			{
-				animator.ResetTrigger("Reload");
-				_isReloading = false;
-				_currentAmmo = _ammo;
-			}
-
-			if (isShooting && _currentAmmo > 0 && !_isReloading)
+			if (isShooting && _currentAmmo > 0 && !_weaponReload.IsReloading)
 			{
 				Shoot();
-			}
-			else if (isShooting)
-			{
-				//Reload();
 			}
 
 			if (_shootTimer < _shootRate)
 				_shootTimer += Time.deltaTime;
-
-			/*if (Input.GetKeyDown(KeyCode.R) && _currentAmmo != _ammo)
-				Reload();*/
 		}
 
 		private void Shoot()
@@ -74,11 +58,6 @@ namespace CM.FPS
 			_muzzleFlash.Play();
 
 			_shootTimer = 0;
-		}
-
-		private void Reload()
-		{
-			animator.SetTrigger("Reload");
 		}
 	}
 }

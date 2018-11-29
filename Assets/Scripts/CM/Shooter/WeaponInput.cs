@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using CM.Orientation;
 
-namespace CM.FPS
+namespace CM.Shooter
 {
 	public class WeaponInput : WeaponBase
 	{

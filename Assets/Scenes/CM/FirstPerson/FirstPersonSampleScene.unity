@@ -15188,7 +15188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240f63c154de92c40b00b39a14857b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 651637794}
 --- !u!114 &949076195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15201,6 +15200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 651637794}
+  _reloadingTriggerParam: Reload
 --- !u!1 &954034634
 GameObject:
   m_ObjectHideFlags: 0

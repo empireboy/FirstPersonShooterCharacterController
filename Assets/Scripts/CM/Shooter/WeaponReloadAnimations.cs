@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 
-namespace CM.FPS
+namespace CM.Shooter
 {
 	public class WeaponReloadAnimations : MonoBehaviour
 	{
 		[SerializeField] private Animator _animator;
+
+		[Header("Animation Parameters")]
+		[SerializeField] private string _reloadingTriggerParam = "Reload";
+
 
 		private WeaponReload _weaponReload;
 		private AnimatorStateInfo _previousAnimatorState;
@@ -16,11 +20,10 @@ namespace CM.FPS
 
 		private void Update()
 		{
-			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Reload") && _previousAnimatorState.IsName("Reload"))
+			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingTriggerParam) && _previousAnimatorState.IsName(_reloadingTriggerParam))
 			{
-				_animator.ResetTrigger("Reload");
-				SendMessage("OnReloadFinished", SendMessageOptions.DontRequireReceiver);
-				Debug.Log("reload finished");
+				_animator.ResetTrigger(_reloadingTriggerParam);
+				_weaponReload.FinishReloading();
 			}
 
 			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
@@ -28,8 +31,8 @@ namespace CM.FPS
 
 		public void OnReload()
 		{
-			_animator.SetTrigger("Reload");
-			SendMessage("OnReloadStart", SendMessageOptions.DontRequireReceiver);
+			_animator.SetTrigger(_reloadingTriggerParam);
+			_weaponReload.StartReloading();
 		}
 	}
 }
