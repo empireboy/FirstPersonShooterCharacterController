@@ -7,7 +7,7 @@ namespace CM.Shooter
 	{
 		[SerializeField] private Transform _shootPoint;
 		[SerializeField] private ParticleSystem _muzzleFlash;
-		[SerializeField] private AudioSource _shootSound;
+		//[SerializeField] private AudioSource _shootSound;
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private float _ammo = 25;
@@ -43,6 +43,8 @@ namespace CM.Shooter
 		{
 			if (_shootTimer < _shootRate) return;
 
+			SendMessage("OnShoot", SendMessageOptions.DontRequireReceiver);
+
 			_currentAmmo--;
 
 			RaycastHit hit;
@@ -54,7 +56,7 @@ namespace CM.Shooter
 
 			_weaponTransformLock.UpdateRandomTransform();
 
-			_shootSound.Play();
+			//_shootSound.Play();
 			_muzzleFlash.Play();
 
 			_shootTimer = 0;
