@@ -8,7 +8,7 @@ namespace CM.Shooter
 		[SerializeField] private float _clips = 5;
 
 		private float _currentClipSize;
-		public float ClipSize
+		public float CurrentClipSize
 		{
 			get
 			{
@@ -16,14 +16,48 @@ namespace CM.Shooter
 			}
 		}
 
+		private float _currentClips;
+		public float CurrentClips
+		{
+			get
+			{
+				return _currentClips;
+			}
+		}
+
+		public float ClipSize
+		{
+			get
+			{
+				return _clipSize;
+			}
+		}
+		public float Clips
+		{
+			get
+			{
+				return _clips;
+			}
+		}
+
 		private void Start()
 		{
-			_currentClipSize = _clipSize;
+			_currentClipSize = ClipSize;
+			_currentClips = _clips;
 		}
 
 		public void ReduceClipSize()
 		{
 			_currentClipSize--;
+		}
+
+		public void Reload()
+		{
+			if (_currentClips > 0)
+			{
+				_currentClips--;
+				_currentClipSize = ClipSize;
+			}
 		}
 	}
 }

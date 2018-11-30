@@ -4,6 +4,8 @@ namespace CM.Shooter
 {
 	public class WeaponReload : MonoBehaviour
 	{
+		[SerializeField] private Ammo _ammo;
+
 		protected bool isReloading = false;
 		public bool IsReloading
 		{
@@ -13,15 +15,21 @@ namespace CM.Shooter
 			}
 		}
 
-		public void StartReloading()
+		public void OnReload()
 		{
-			isReloading = true;
-			SendMessage("OnReloadStart", SendMessageOptions.DontRequireReceiver);
+			if (_ammo.CurrentClips > 0 && _ammo.CurrentClipSize < _ammo.ClipSize)
+			{
+				isReloading = true;
+				SendMessage("OnReloadStart", SendMessageOptions.DontRequireReceiver);
+			}
 		}
 
 		public void FinishReloading()
 		{
 			isReloading = false;
+
+			_ammo.Reload();
+
 			SendMessage("OnReloadFinished", SendMessageOptions.DontRequireReceiver);
 		}
 	}

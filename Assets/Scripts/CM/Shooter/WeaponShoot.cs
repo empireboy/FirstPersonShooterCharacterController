@@ -21,7 +21,7 @@ namespace CM.Shooter
 
 		private void Update()
 		{
-			if (isShooting && _ammo.ClipSize > 0 && !_weaponReload.IsReloading)
+			if (isShooting && _ammo.CurrentClipSize > 0 && !_weaponReload.IsReloading)
 			{
 				Shoot();
 			}

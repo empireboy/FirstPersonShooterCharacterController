@@ -2962,8 +2962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f91394e06366b458cd5ad8f06edce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clipSize: 25
-  _clips: 5
+  _clipSize: 35
+  _clips: 6
 --- !u!1 &144856749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15201,6 +15201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240f63c154de92c40b00b39a14857b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammo: {fileID: 133376136}
 --- !u!114 &949076195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15255,10 +15256,10 @@ MonoBehaviour:
     RotationSpeed: 20
     TargetPosition: {x: 0.13, y: -0.08, z: 0.41}
     TargetRotation: {x: 0, y: 0, z: 0}
-    TargetPositionRandomizer: {x: 0, y: 0.002, z: 0.005}
-    TargetRotationRandomizer: {x: 0, y: 0, z: 0}
+    TargetPositionRandomizer: {x: 0.001, y: 0.005, z: 0.01}
+    TargetRotationRandomizer: {x: 0.5, y: 0.5, z: 0}
     RandomPositionSpeed: 30
-    RandomRotationSpeed: 0
+    RandomRotationSpeed: 30
 --- !u!1 &954034634
 GameObject:
   m_ObjectHideFlags: 0
@@ -31505,13 +31506,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformLockData:
-    PositionSpeed: 0
-    RotationSpeed: 0
-    TargetPosition: {x: 0, y: 0, z: 0}
+    PositionSpeed: 20
+    RotationSpeed: 20
+    TargetPosition: {x: 0.13, y: -0.08, z: 0.41}
     TargetRotation: {x: 0, y: 0, z: 0}
-    TargetPositionRandomizer: {x: 0, y: 0, z: 0}
+    TargetPositionRandomizer: {x: 0, y: 0.002, z: 0.005}
     TargetRotationRandomizer: {x: 0, y: 0, z: 0}
-    RandomPositionSpeed: 0
+    RandomPositionSpeed: 30
     RandomRotationSpeed: 0
   _sway: 1
   swayAmount: {x: 0.02, y: 0.02}
@@ -31527,8 +31528,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d98582d2f21d734a979f4b58f56c64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimPosition: {x: 0, y: -0.05, z: 0.3}
-  _aimRotation: {x: -0.5, y: 0, z: 0}
+  _transformLock: {fileID: 1896192795}
+  _transformLockData:
+    PositionSpeed: 20
+    RotationSpeed: 20
+    TargetPosition: {x: 0, y: -0.05, z: 0.3}
+    TargetRotation: {x: -0.5, y: 0, z: 0}
+    TargetPositionRandomizer: {x: 0, y: 0.002, z: 0.005}
+    TargetRotationRandomizer: {x: 0, y: 0, z: 0}
+    RandomPositionSpeed: 30
+    RandomRotationSpeed: 0
   _onAimStart:
     m_PersistentCalls:
       m_Calls:
@@ -31638,6 +31647,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1667704430}
         m_MethodName: ResetSensitivityMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 949076198}
+        m_MethodName: SetTransformLock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

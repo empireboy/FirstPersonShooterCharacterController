@@ -7,18 +7,6 @@ namespace CM.Orientation
 	{
 		[SerializeField] private TransformLockData _transformLockData;
 
-		/*
-		public float positionSpeed = 3;
-		public float rotationSpeed = 3;
-
-		[SerializeField] private Vector3 _targetPosition;
-		[SerializeField] private Vector3 _targetRotation;
-
-		[SerializeField] private Vector3 _targetPositionRandomizer;
-		[SerializeField] private Vector3 _targetRotationRandomizer;
-		[SerializeField] private float _randomPositionSpeed;
-		[SerializeField] private float _randomRotationSpeed;*/
-
 		[Header("Sway Transform")]
 		[SerializeField] private bool _sway = false;
 		[ShowIf("_sway")]

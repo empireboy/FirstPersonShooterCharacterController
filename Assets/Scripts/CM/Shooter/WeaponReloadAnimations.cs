@@ -30,11 +30,9 @@ namespace CM.Shooter
 			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
 		}
 
-		public void OnReload()
+		public void OnReloadStart()
 		{
 			_animator.SetTrigger(_reloadingTriggerParam);
-			if (_weaponReload)
-				_weaponReload.StartReloading();
 		}
 	}
 }

@@ -5,8 +5,8 @@ namespace CM.Orientation
 {
 	public class Aim : MonoBehaviour
 	{
-		[SerializeField] private Vector3 _aimPosition;
-		[SerializeField] private Vector3 _aimRotation;
+		[SerializeField] private TransformLock _transformLock;
+		[SerializeField] private TransformLockData _transformLockData;
 
 		[SerializeField] private UnityEvent _onAimStart;
 		[SerializeField] private UnityEvent _onAimStop;
@@ -15,16 +15,13 @@ namespace CM.Orientation
 		{
 			if (Input.GetMouseButtonDown(1))
 			{
-				GetComponent<TransformLock>().SetPosition(_aimPosition);
-				GetComponent<TransformLock>().SetRotation(_aimRotation);
+				GetComponent<TransformLock>().Set(_transformLockData);
 
 				_onAimStart.Invoke();
 			}
 
 			if (Input.GetMouseButtonUp(1))
 			{
-				GetComponent<TransformLock>().ResetTransform();
-
 				_onAimStop.Invoke();
 			}
 		}

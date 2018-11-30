@@ -17,5 +17,10 @@ namespace CM.Shooter
 		{
 			_weaponTransformLock.UpdateRandomTransform();
 		}
+
+		public void SetTransformLock()
+		{
+			_weaponTransformLock.Set(_weaponTransformLockData);
+		}
 	}
 }
