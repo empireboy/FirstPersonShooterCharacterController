@@ -9,8 +9,6 @@ namespace CM.Shooter
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private float _ammo = 25;
-		[SerializeField] private TransformLock _weaponTransformLock;
-		[SerializeField] private TransformLockData _weaponTransformLockData;
 
 		private float _shootTimer = 0;
 		private float _currentAmmo;
@@ -24,7 +22,6 @@ namespace CM.Shooter
 
 		private void Start()
 		{
-			_weaponTransformLock.Set(_weaponTransformLockData);
 			_currentAmmo = _ammo;
 		}
 
@@ -53,8 +50,6 @@ namespace CM.Shooter
 			{
 				Destroy(hit.transform.gameObject);
 			}
-
-			_weaponTransformLock.UpdateRandomTransform();
 
 			_shootTimer = 0;
 		}
