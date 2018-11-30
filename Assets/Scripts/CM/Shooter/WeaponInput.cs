@@ -3,16 +3,17 @@ using CM.Orientation;
 
 namespace CM.Shooter
 {
-	public class WeaponInput : WeaponBase
+	public class WeaponInput : MonoBehaviour
 	{
 		[SerializeField] private TransformLock _weaponTransformLock;
 
 		private void Update()
 		{
-			isShooting = (Input.GetButton("Fire1")) ? true : false;
+			if (Input.GetButton("Fire1"))
+				SendMessage("Shoot", SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonUp("Fire1"))
-				_weaponTransformLock.ResetRandomizer();
+				SendMessage("OnResetTransformLockRandomizer", SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonDown("Reload"))
 				SendMessage("OnReload", SendMessageOptions.DontRequireReceiver);

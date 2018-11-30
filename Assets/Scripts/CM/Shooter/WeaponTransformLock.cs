@@ -22,5 +22,10 @@ namespace CM.Shooter
 		{
 			_weaponTransformLock.Set(_weaponTransformLockData);
 		}
+
+		public void OnResetTransformLockRandomizer()
+		{
+			_weaponTransformLock.ResetRandomizer();
+		}
 	}
 }

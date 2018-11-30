@@ -2,12 +2,21 @@
 
 namespace CM.Shooter
 {
-	public class WeaponShoot : WeaponBase
+	public class WeaponShoot : MonoBehaviour
 	{
 		[SerializeField] private Transform _shootPoint;
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private Ammo _ammo;
+
+		private bool _isShooting = false;
+		public bool IsShooting
+		{
+			get
+			{
+				return _isShooting;
+			}
+		}
 
 		private float _shootTimer = 0;
 		private float _currentAmmo;
@@ -21,18 +30,15 @@ namespace CM.Shooter
 
 		private void Update()
 		{
-			if (isShooting && _ammo.CurrentClipSize > 0 && !_weaponReload.IsReloading)
-			{
-				Shoot();
-			}
-
 			if (_shootTimer < _shootRate)
 				_shootTimer += Time.deltaTime;
 		}
 
-		private void Shoot()
+		public void Shoot()
 		{
 			if (_shootTimer < _shootRate) return;
+
+			if (!(_ammo.CurrentClipSize > 0 && !_weaponReload.IsReloading)) return;
 
 			SendMessage("OnShoot", SendMessageOptions.DontRequireReceiver);
 
