@@ -3,7 +3,7 @@ using CM.Orientation;
 
 namespace CM.Shooter
 {
-	public class WeaponShoot : WeaponBase
+	public class WeaponTransformLock : MonoBehaviour
 	{
 		[SerializeField] private Transform _shootPoint;
 		[SerializeField] private float _shootRate = 0.5f;

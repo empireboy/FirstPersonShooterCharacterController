@@ -5,6 +5,9 @@ namespace CM.Orientation
 {
 	public class TransformLock : MonoBehaviour
 	{
+		[SerializeField] private TransformLockData _transformLockData;
+
+		/*
 		public float positionSpeed = 3;
 		public float rotationSpeed = 3;
 
@@ -14,7 +17,7 @@ namespace CM.Orientation
 		[SerializeField] private Vector3 _targetPositionRandomizer;
 		[SerializeField] private Vector3 _targetRotationRandomizer;
 		[SerializeField] private float _randomPositionSpeed;
-		[SerializeField] private float _randomRotationSpeed;
+		[SerializeField] private float _randomRotationSpeed;*/
 
 		[Header("Sway Transform")]
 		[SerializeField] private bool _sway = false;
@@ -34,8 +37,8 @@ namespace CM.Orientation
 
 		private void Start()
 		{
-			_targetPositionStart = _targetPosition;
-			_targetRotationStart = _targetRotation;
+			_targetPositionStart = _transformLockData.TargetPosition;
+			_targetRotationStart = _transformLockData.TargetRotation;
 		}
 
 		private void Update()
@@ -51,31 +54,36 @@ namespace CM.Orientation
 				swayPosition = new Vector3(swayX, swayY, 0);
 			}
 
-			_currentRandomPosition = Vector3.Lerp(_currentRandomPosition, _targetPositionRandom, Time.deltaTime * _randomPositionSpeed);
-			_currentRandomRotation = Vector3.Lerp(_currentRandomRotation, _targetRotationRandom, Time.deltaTime * _randomRotationSpeed);
+			_currentRandomPosition = Vector3.Lerp(_currentRandomPosition, _targetPositionRandom, Time.deltaTime * _transformLockData.RandomPositionSpeed);
+			_currentRandomRotation = Vector3.Lerp(_currentRandomRotation, _targetRotationRandom, Time.deltaTime * _transformLockData.RandomRotationSpeed);
 
-			transform.localPosition = Vector3.Lerp(transform.localPosition, _targetPosition + swayPosition + _currentRandomPosition, Time.deltaTime * positionSpeed);
-			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_targetRotation + _targetRotationRandom), Time.deltaTime * rotationSpeed);
+			transform.localPosition = Vector3.Lerp(transform.localPosition, _transformLockData.TargetPosition + swayPosition + _currentRandomPosition, Time.deltaTime * _transformLockData.PositionSpeed);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_transformLockData.TargetRotation + _targetRotationRandom), Time.deltaTime * _transformLockData.RotationSpeed);
+		}
+
+		public void Set(TransformLockData transformLockData)
+		{
+			_transformLockData = transformLockData;
 		}
 
 		public void SetPosition(Vector3 position)
 		{
-			_targetPosition = position;
+			_transformLockData.TargetPosition = position;
 		}
 
 		public void SetRotation(Vector3 rotation)
 		{
-			_targetRotation = rotation;
+			_transformLockData.TargetRotation = rotation;
 		}
 
 		public void ResetPosition()
 		{
-			_targetPosition = _targetPositionStart;
+			_transformLockData.TargetPosition = _targetPositionStart;
 		}
 
 		public void ResetRotation()
 		{
-			_targetRotation = _targetRotationStart;
+			_transformLockData.TargetRotation = _targetRotationStart;
 		}
 
 		public void ResetTransform()
@@ -92,14 +100,14 @@ namespace CM.Orientation
 		public void UpdateRandomTransform()
 		{
 			_targetPositionRandom = new Vector3(
-				Random.Range(-_targetPositionRandomizer.x, _targetPositionRandomizer.x),
-				Random.Range(-_targetPositionRandomizer.y, _targetPositionRandomizer.y),
-				Random.Range(-_targetPositionRandomizer.z, _targetPositionRandomizer.z)
+				Random.Range(-_transformLockData.TargetPositionRandomizer.x, _transformLockData.TargetPositionRandomizer.x),
+				Random.Range(-_transformLockData.TargetPositionRandomizer.y, _transformLockData.TargetPositionRandomizer.y),
+				Random.Range(-_transformLockData.TargetPositionRandomizer.z, _transformLockData.TargetPositionRandomizer.z)
 			);
 			_targetRotationRandom = new Vector3(
-				Random.Range(-_targetRotationRandomizer.x, _targetRotationRandomizer.x),
-				Random.Range(-_targetRotationRandomizer.y, _targetRotationRandomizer.y),
-				Random.Range(-_targetRotationRandomizer.z, _targetRotationRandomizer.z)
+				Random.Range(-_transformLockData.TargetRotationRandomizer.x, _transformLockData.TargetRotationRandomizer.x),
+				Random.Range(-_transformLockData.TargetRotationRandomizer.y, _transformLockData.TargetRotationRandomizer.y),
+				Random.Range(-_transformLockData.TargetRotationRandomizer.z, _transformLockData.TargetRotationRandomizer.z)
 			);
 		}
 
@@ -108,5 +116,18 @@ namespace CM.Orientation
 			_targetPositionRandom = Vector3.zero;
 			_targetRotationRandom = Vector3.zero;
 		}
+	}
+
+	[System.Serializable]
+	public struct TransformLockData
+	{
+		public float PositionSpeed;
+		public float RotationSpeed;
+		public Vector3 TargetPosition;
+		public Vector3 TargetRotation;
+		public Vector3 TargetPositionRandomizer;
+		public Vector3 TargetRotationRandomizer;
+		public float RandomPositionSpeed;
+		public float RandomRotationSpeed;
 	}
 }

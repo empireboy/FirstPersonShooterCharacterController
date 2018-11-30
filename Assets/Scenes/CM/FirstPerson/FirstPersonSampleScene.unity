@@ -15065,11 +15065,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootPoint: {fileID: 2022780159}
-  _muzzleFlash: {fileID: 984550171}
   _shootRate: 0.1
   _shootRange: 100
   _ammo: 25
   _weaponTransformLock: {fileID: 1896192795}
+  _weaponTransformLockData:
+    PositionSpeed: 20
+    RotationSpeed: 20
+    TargetPosition: {x: 0.13, y: -0.08, z: 0.41}
+    TargetRotation: {x: 0, y: 0, z: 0}
+    TargetPositionRandomizer: {x: 0, y: 0.002, z: 0.005}
+    TargetRotationRandomizer: {x: 0, y: 0, z: 0}
+    RandomPositionSpeed: 30
+    RandomRotationSpeed: 0
 --- !u!114 &949076192
 MonoBehaviour:
   m_ObjectHideFlags: 0
