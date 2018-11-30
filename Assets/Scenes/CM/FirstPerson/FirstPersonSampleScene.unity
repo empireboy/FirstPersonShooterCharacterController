@@ -2872,6 +2872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133376134}
   - component: {fileID: 133376135}
+  - component: {fileID: 133376136}
   m_Layer: 8
   m_Name: Magazine
   m_TagString: Untagged
@@ -2950,6 +2951,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.070900686, y: -0.2830947, z: -0.04915522}
     m_Extent: {x: 0.046790965, y: 0.068496734, z: 0.022340827}
   m_DirtyAABB: 0
+--- !u!114 &133376136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 133376133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f91394e06366b458cd5ad8f06edce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clipSize: 25
+  _clips: 5
 --- !u!1 &144856749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15068,7 +15082,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 2022780159}
   _shootRate: 0.1
   _shootRange: 100
-  _ammo: 25
+  _ammo: {fileID: 133376136}
 --- !u!114 &949076192
 MonoBehaviour:
   m_ObjectHideFlags: 0

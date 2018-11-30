@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using CM.Orientation;
 
 namespace CM.Shooter
 {
@@ -8,7 +7,7 @@ namespace CM.Shooter
 		[SerializeField] private Transform _shootPoint;
 		[SerializeField] private float _shootRate = 0.5f;
 		[SerializeField] private float _shootRange = 100;
-		[SerializeField] private float _ammo = 25;
+		[SerializeField] private Ammo _ammo;
 
 		private float _shootTimer = 0;
 		private float _currentAmmo;
@@ -20,14 +19,9 @@ namespace CM.Shooter
 			_weaponReload = GetComponent<WeaponReload>();
 		}
 
-		private void Start()
-		{
-			_currentAmmo = _ammo;
-		}
-
 		private void Update()
 		{
-			if (isShooting && _currentAmmo > 0 && !_weaponReload.IsReloading)
+			if (isShooting && _ammo.ClipSize > 0 && !_weaponReload.IsReloading)
 			{
 				Shoot();
 			}
@@ -42,7 +36,7 @@ namespace CM.Shooter
 
 			SendMessage("OnShoot", SendMessageOptions.DontRequireReceiver);
 
-			_currentAmmo--;
+			_ammo.ReduceClipSize();
 
 			RaycastHit hit;
 
