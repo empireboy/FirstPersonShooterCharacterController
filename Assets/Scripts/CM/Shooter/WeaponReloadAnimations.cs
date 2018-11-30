@@ -23,7 +23,8 @@ namespace CM.Shooter
 			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingTriggerParam) && _previousAnimatorState.IsName(_reloadingTriggerParam))
 			{
 				_animator.ResetTrigger(_reloadingTriggerParam);
-				_weaponReload.FinishReloading();
+				if (_weaponReload)
+					_weaponReload.FinishReloading();
 			}
 
 			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
@@ -32,7 +33,8 @@ namespace CM.Shooter
 		public void OnReload()
 		{
 			_animator.SetTrigger(_reloadingTriggerParam);
-			_weaponReload.StartReloading();
+			if (_weaponReload)
+				_weaponReload.StartReloading();
 		}
 	}
 }
