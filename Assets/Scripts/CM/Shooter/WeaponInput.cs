@@ -16,6 +16,9 @@ namespace CM.Shooter
 				SendMessage("Shoot", SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonUp(shootKey))
+				SendMessage("ShootStop", SendMessageOptions.DontRequireReceiver);
+
+			if (Input.GetButtonUp(shootKey))
 				SendMessage("OnResetTransformLockRandomizer", SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonDown(reloadKey))

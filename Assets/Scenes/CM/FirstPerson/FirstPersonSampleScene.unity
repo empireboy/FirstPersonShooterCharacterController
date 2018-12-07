@@ -26272,6 +26272,8 @@ GameObject:
   - component: {fileID: 949076197}
   - component: {fileID: 949076194}
   - component: {fileID: 949076195}
+  - component: {fileID: 949076199}
+  - component: {fileID: 949076200}
   - component: {fileID: 949076198}
   - component: {fileID: 949076193}
   m_Layer: 8
@@ -26493,6 +26495,34 @@ MonoBehaviour:
     TargetRotationRandomizer: {x: 0.5, y: 0.5, z: 0}
     RandomPositionSpeed: 30
     RandomRotationSpeed: 30
+--- !u!114 &949076199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db2f6f7314bae5488564c04be31aeae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 651637794}
+  _isMovingParam: IsMoving
+  _rigidbodyMovement: {fileID: 1667704431}
+--- !u!114 &949076200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10c681b387b7ae40b5bc8545eaff2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 651637794}
+  _isShootingParam: IsShooting
+  _weaponShoot: {fileID: 949076191}
 --- !u!1 &953608581
 GameObject:
   m_ObjectHideFlags: 0
@@ -46839,9 +46869,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96c078543cb8d042b3a21c527f6e36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _rigidbodyMovementInput: {fileID: 1667704432}
   _rigidbodyMovementAnimations: {fileID: 1667704433}
+  _speed: 5
   _sidewaysMovementFactor: 0.7
 --- !u!114 &1667704432
 MonoBehaviour:
@@ -46867,6 +46897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cadf5be7342b9b4ea8eb205e69317e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbodyMovement: {fileID: 1667704431}
   _isMovingParam: IsMoving
   _walkSpeedMultiplierParam: WalkSpeedMultiplier
 --- !u!114 &1667704434
@@ -46880,16 +46911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06186ad389089fb4bbebb6aace1a8abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onMoveStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  _onMoveStop:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1668605784
 GameObject:
   m_ObjectHideFlags: 0

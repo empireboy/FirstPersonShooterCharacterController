@@ -40,6 +40,8 @@ namespace CM.Shooter
 
 			if (!(_ammo.CurrentClipSize > 0 && !_weaponReload.IsReloading)) return;
 
+			_isShooting = true;
+
 			SendMessage("OnShoot", SendMessageOptions.DontRequireReceiver);
 
 			_ammo.ReduceClipSize();
@@ -52,6 +54,11 @@ namespace CM.Shooter
 			}
 
 			_shootTimer = 0;
+		}
+
+		public void ShootStop()
+		{
+			_isShooting = false;
 		}
 	}
 }

@@ -5,6 +5,7 @@ namespace CM.Orientation
 {
 	public class RigidbodyMovementEvents : RigidbodyMovementBase
 	{
+		/*
 		[SerializeField] private UnityEvent _onMoveStart;
 		[SerializeField] private UnityEvent _onMoveStop;
 
@@ -25,5 +26,6 @@ namespace CM.Orientation
 
 			_previousInputMagnitude = inputs.magnitude;
 		}
+		*/
 	}
 }
