@@ -47034,6 +47034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1667704435}
   _rigidbodyMovement: {fileID: 1667704431}
+  _stopAudioSpeed: 1
 --- !u!1 &1668605784
 GameObject:
   m_ObjectHideFlags: 0
