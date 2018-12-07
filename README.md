@@ -13,7 +13,9 @@ Wanneer je een specifiek onderdeel wilt uitlichten kun je dat in deze sectie ben
 - [Iets unieks waar je trots op bent binnen de project](link)
 -->
 - Movement with animations
-- Shooting and aiming
+- Jumping
+- Weapon shooting aiming and reloading
+- Weapon recoil
 
 ## Software Analysis
 - Unity
@@ -45,6 +47,8 @@ Wat wil je bereiken met dit project? Formuleer dit kort, krachtig en haalbaar.
 - Creating loosely coupled game mechanics.
 
 ## Planning 
+First three weeks.
+
 | | Monday | Tuesday | Wednesday | Thursday | Friday |
 | --- | --- | --- | --- | --- | --- |
 |Week 1 | Research and Planning | A simple playarea to work in | Basic movement | Basic movement and camera rotation | Movement and jump animations
