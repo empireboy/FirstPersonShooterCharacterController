@@ -4,6 +4,8 @@ namespace CM.Orientation
 {
 	public class RigidbodyMovementAnimations : RigidbodyMovementBase
 	{
+		[SerializeField] private RigidbodyMovement _rigidbodyMovement;
+
 		[Header("Animation Parameters")]
 		[SerializeField] private string _isMovingParam = "IsMoving";
 		[SerializeField] private string _walkSpeedMultiplierParam = "WalkSpeedMultiplier";
@@ -23,7 +25,7 @@ namespace CM.Orientation
 
 		private void Update()
 		{
-			_animator.SetBool(_isMovingParam, IsMoving);
+			_animator.SetBool(_isMovingParam, _rigidbodyMovement.IsMoving);
 		}
 
 		public void SetWalkSpeedMultiplier(float multiplier)

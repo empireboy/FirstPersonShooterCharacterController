@@ -2,22 +2,23 @@
 
 namespace CM.Orientation
 {
-	public class RigidbodyMovementInput : RigidbodyMovementBase
+	public class RigidbodyMovementInput : MonoBehaviour
 	{
-		[SerializeField] private string _horizontalAxis = "Horizontal";
-		[SerializeField] private string _verticalAxis = "Vertical";
+		public string horizontalAxis = "Horizontal";
+		public string verticalAxis = "Vertical";
 
-		private void Start()
-		{
-			horizontalAxis = _horizontalAxis;
-			verticalAxis = _verticalAxis;
-		}
+		private Vector3 _inputs;
 
 		private void Update()
 		{
-			inputs = Vector3.zero;
-			inputs.x = Input.GetAxis(horizontalAxis);
-			inputs.z = Input.GetAxis(verticalAxis);
+			_inputs = Vector3.zero;
+			_inputs.x = Input.GetAxis(horizontalAxis);
+			_inputs.z = Input.GetAxis(verticalAxis);
+		}
+
+		public Vector3 GetInput()
+		{
+			return _inputs;
 		}
 	}
 }
