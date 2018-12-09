@@ -3,11 +3,11 @@
 namespace CM.Orientation
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class RigidbodyMovement : RigidbodyMovementBase
+	public class RigidbodyMovement : MovementBase
 	{
-		[SerializeField] private RigidbodyMovementInput _rigidbodyMovementInput;
-		[SerializeField] private RigidbodyMovementAnimations _rigidbodyMovementAnimations;
-		[SerializeField] private float _speed = 5f;
+		[SerializeField] private MovementInputBase _movementInput;
+		[SerializeField] private MovementAnimationsBase _movementAnimations;
+		[SerializeField] public float speed = 5f;
 		[SerializeField] private float _sidewaysMovementFactor = 0.5f;
 
 		private Vector3 _input = Vector3.zero;
@@ -17,14 +17,7 @@ namespace CM.Orientation
 		private bool _sidewaysMovement = false;
 		private float _previousInputMagnitude;
 
-		private bool _isMoving = false;
-		public bool IsMoving
-		{
-			get
-			{
-				return _isMoving;
-			}
-		}
+		private float _currentSpeed;
 
 		private Rigidbody _rigidbody;
 
@@ -35,14 +28,14 @@ namespace CM.Orientation
 
 		private void Start()
 		{
-			speed = _speed;
+			_currentSpeed = speed;
 		}
 
 		private void Update()
 		{
 			// Get input
-			if (_rigidbodyMovementInput)
-				_input = _rigidbodyMovementInput.GetInput();
+			if (_movementInput)
+				_input = _movementInput.GetInput();
 
 			// Max magnitude of 1
 			_input = Vector3.ClampMagnitude(_input, 1);
@@ -51,21 +44,21 @@ namespace CM.Orientation
 			_input = new Vector3(_input.x * _sidewaysMovementFactor, _input.y, _input.z);
 
 			// Slower or faster sideways animation
-			if (_rigidbodyMovementAnimations)
+			if (_movementAnimations)
 			{
 				if (Mathf.Abs(_input.x) > 0 && !_sidewaysMovement)
 				{
-					_rigidbodyMovementAnimations.SetWalkSpeedMultiplier(_sidewaysMovementFactor);
+					_movementAnimations.SetWalkSpeedMultiplier(_sidewaysMovementFactor);
 					_sidewaysMovement = true;
 				}
 				else if (Mathf.Abs(_input.x) <= 0 && _sidewaysMovement)
 				{
-					_rigidbodyMovementAnimations.ResetWalkSpeedMultiplier();
+					_movementAnimations.ResetWalkSpeedMultiplier();
 					_sidewaysMovement = false;
 				}
 			}
 
-			_isMoving = ((_input.magnitude > _previousInputMagnitude) || (Mathf.Approximately(_input.magnitude, _previousInputMagnitude) && _input.magnitude > 0)) ? true : false;
+			isMoving = ((_input.magnitude > _previousInputMagnitude) || (Mathf.Approximately(_input.magnitude, _previousInputMagnitude) && _input.magnitude > 0)) ? true : false;
 
 			_input = transform.TransformDirection(_input);
 			_previousInputMagnitude = _input.magnitude;
@@ -73,17 +66,17 @@ namespace CM.Orientation
 
 		private void FixedUpdate()
 		{
-			_rigidbody.MovePosition(_rigidbody.position + _input * speed * Time.fixedDeltaTime);
+			_rigidbody.MovePosition(_rigidbody.position + _input * _currentSpeed * Time.fixedDeltaTime);
 		}
 
 		public void SetSpeed(float spd)
 		{
-			speed = spd;
+			_currentSpeed = spd;
 		}
 
 		public void ResetSpeed()
 		{
-			speed = _speed;
+			_currentSpeed = speed;
 		}
 	}
 }

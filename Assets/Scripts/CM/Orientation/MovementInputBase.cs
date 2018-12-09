@@ -2,23 +2,23 @@
 
 namespace CM.Orientation
 {
-	public class RigidbodyMovementInput : MonoBehaviour
+	public abstract class MovementInputBase : MonoBehaviour
 	{
 		public string horizontalAxis = "Horizontal";
 		public string verticalAxis = "Vertical";
 
-		private Vector3 _inputs;
+		protected Vector3 inputs;
 
 		private void Update()
 		{
-			_inputs = Vector3.zero;
-			_inputs.x = Input.GetAxis(horizontalAxis);
-			_inputs.z = Input.GetAxis(verticalAxis);
+			inputs = Vector3.zero;
+			inputs.x = Input.GetAxis(horizontalAxis);
+			inputs.z = Input.GetAxis(verticalAxis);
 		}
 
 		public Vector3 GetInput()
 		{
-			return _inputs;
+			return inputs;
 		}
 	}
 }

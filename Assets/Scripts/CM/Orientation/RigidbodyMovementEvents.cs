@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CM.Orientation
 {
-	public class RigidbodyMovementEvents : RigidbodyMovementBase
+	public class RigidbodyMovementEvents : MonoBehaviour
 	{
 		/*
 		[SerializeField] private UnityEvent _onMoveStart;

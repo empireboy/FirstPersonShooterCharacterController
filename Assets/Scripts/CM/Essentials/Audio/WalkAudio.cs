@@ -6,14 +6,24 @@ namespace CM.Essentials.Audio
 	public class WalkAudio : MonoBehaviour
 	{
 		[SerializeField] private AudioSource _audioSource;
-		[SerializeField] private RigidbodyMovement _rigidbodyMovement;
+		[SerializeField] private MovementBase _movement;
+		[SerializeField] private Animator _animator;
 		[SerializeField] private float _stopAudioSpeed = 1f;
 
+		[Header("Animation States")]
+		[SerializeField] private string _walkState = "Walk";
+
 		private bool _isStopping = false;
+		private float _audioVolume;
+
+		private void Start()
+		{
+			_audioVolume = _audioSource.volume;
+		}
 
 		private void Update()
 		{
-			if (_audioSource.isPlaying && !_rigidbodyMovement.IsMoving)
+			if (_audioSource.isPlaying && !_animator.GetCurrentAnimatorStateInfo(0).IsName(_walkState) && !_movement.IsMoving)
 				_isStopping = true;
 
 			if (_isStopping)
@@ -24,9 +34,14 @@ namespace CM.Essentials.Audio
 				{
 					_audioSource.Stop();
 					_isStopping = false;
-					_audioSource.volume = 1;
+					_audioSource.volume = _audioVolume;
 				}
 			}
+		}
+
+		public void Play()
+		{
+			_audioSource.Play();
 		}
 	}
 }
