@@ -13,6 +13,7 @@ Wanneer je een specifiek onderdeel wilt uitlichten kun je dat in deze sectie ben
 - [Iets unieks waar je trots op bent binnen de project](link)
 -->
 - Movement with animations
+- Footstep sounds
 - Jumping
 - Weapon shooting aiming and reloading
 - Weapon recoil
