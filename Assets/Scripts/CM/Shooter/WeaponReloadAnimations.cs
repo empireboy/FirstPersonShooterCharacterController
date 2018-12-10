@@ -7,7 +7,8 @@ namespace CM.Shooter
 		[SerializeField] private Animator _animator;
 
 		[Header("Animation Parameters")]
-		[SerializeField] private string _reloadingTriggerParam = "Reload";
+		[SerializeField] private string _reloadingState = "Reload";
+		[SerializeField] private string _isReloadingParam = "IsReloading";
 
 
 		private WeaponReload _weaponReload;
@@ -20,19 +21,15 @@ namespace CM.Shooter
 
 		private void Update()
 		{
-			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingTriggerParam) && _previousAnimatorState.IsName(_reloadingTriggerParam))
+			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingState) && _previousAnimatorState.IsName(_reloadingState))
 			{
-				_animator.ResetTrigger(_reloadingTriggerParam);
 				if (_weaponReload)
 					_weaponReload.FinishReloading();
 			}
 
-			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
-		}
+			_animator.SetBool(_isReloadingParam, _weaponReload.IsReloading);
 
-		public void OnReloadStart()
-		{
-			_animator.SetTrigger(_reloadingTriggerParam);
+			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
 		}
 	}
 }

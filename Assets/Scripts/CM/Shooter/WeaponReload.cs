@@ -6,12 +6,12 @@ namespace CM.Shooter
 	{
 		[SerializeField] private Ammo _ammo;
 
-		protected bool isReloading = false;
+		private bool _isReloading = false;
 		public bool IsReloading
 		{
 			get
 			{
-				return isReloading;
+				return _isReloading;
 			}
 		}
 
@@ -19,14 +19,14 @@ namespace CM.Shooter
 		{
 			if (_ammo.CurrentClips > 0 && _ammo.CurrentClipSize < _ammo.ClipSize)
 			{
-				isReloading = true;
+				_isReloading = true;
 				SendMessage("OnReloadStart", SendMessageOptions.DontRequireReceiver);
 			}
 		}
 
 		public void FinishReloading()
 		{
-			isReloading = false;
+			_isReloading = false;
 
 			_ammo.Reload();
 

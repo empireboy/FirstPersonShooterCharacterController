@@ -11,19 +11,40 @@ namespace CM.Orientation
 		[SerializeField] private UnityEvent _onAimStart;
 		[SerializeField] private UnityEvent _onAimStop;
 
+		public string aimKey = "Aim";
+
+		private bool _isAiming = false;
+		public bool IsAiming
+		{
+			get
+			{
+				return _isAiming;
+			}
+		}
+
 		private void Update()
 		{
-			if (Input.GetMouseButtonDown(1))
-			{
-				GetComponent<TransformLock>().Set(_transformLockData);
+			if (Input.GetButtonDown(aimKey) || (Input.GetButton(aimKey) && !_isAiming))
+				StartAim();
 
-				_onAimStart.Invoke();
-			}
+			if (Input.GetButtonUp(aimKey) || (!Input.GetButton(aimKey) && _isAiming))
+				StopAim();
+		}
 
-			if (Input.GetMouseButtonUp(1))
-			{
-				_onAimStop.Invoke();
-			}
+		public void StartAim()
+		{
+			GetComponent<TransformLock>().Set(_transformLockData);
+
+			_isAiming = true;
+
+			_onAimStart.Invoke();
+		}
+
+		public void StopAim()
+		{
+			_isAiming = false;
+
+			_onAimStop.Invoke();
 		}
 	}
 }

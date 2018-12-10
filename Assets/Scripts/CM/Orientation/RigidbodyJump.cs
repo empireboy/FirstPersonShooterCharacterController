@@ -31,7 +31,7 @@ namespace CM.Orientation
 		{
 			_isGrounded = Physics.CheckSphere(_groundChecker.position, groundDistance, ground, QueryTriggerInteraction.Ignore);
 
-			if (Input.GetButtonDown("Jump") && _isGrounded)
+			if (Input.GetButtonDown("Jump") && _isGrounded && !_animator.GetCurrentAnimatorStateInfo(0).IsName("GroundHit") && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
 			{
 				_rigidbody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
 				_onJumpStart.Invoke();

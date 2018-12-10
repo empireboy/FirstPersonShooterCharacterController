@@ -26301,6 +26301,7 @@ GameObject:
   - component: {fileID: 949076197}
   - component: {fileID: 949076194}
   - component: {fileID: 949076195}
+  - component: {fileID: 949076201}
   - component: {fileID: 949076199}
   - component: {fileID: 949076200}
   - component: {fileID: 949076198}
@@ -26478,7 +26479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 651637794}
-  _reloadingTriggerParam: Reload
+  _reloadingState: Reload
+  _isReloadingParam: IsReloading
 --- !u!114 &949076196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26552,6 +26554,18 @@ MonoBehaviour:
   _animator: {fileID: 651637794}
   _isShootingParam: IsShooting
   _weaponShoot: {fileID: 949076191}
+--- !u!114 &949076201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949076189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2ffe191cf8be348831cae84e0cedba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aim: {fileID: 1896192796}
 --- !u!1 &953608581
 GameObject:
   m_ObjectHideFlags: 0
@@ -55207,6 +55221,7 @@ GameObject:
   - component: {fileID: 1896192794}
   - component: {fileID: 1896192795}
   - component: {fileID: 1896192796}
+  - component: {fileID: 1896192797}
   m_Layer: 8
   m_Name: Arms
   m_TagString: Weapon
@@ -55404,6 +55419,21 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  aimKey: Aim
+--- !u!114 &1896192797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896192793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ddd580c8671fd47afadf11fb68c2ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aim: {fileID: 1896192796}
+  _animator: {fileID: 651637794}
+  _isAimingParam: IsAiming
 --- !u!1 &1900311957
 GameObject:
   m_ObjectHideFlags: 0
@@ -55705,7 +55735,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3519e1b49b777a34d8674238d3c71350, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 2
   Loop: 0
   Mute: 0
