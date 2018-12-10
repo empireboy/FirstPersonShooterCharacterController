@@ -68,8 +68,16 @@ Welke bronnen heb je gebruikt? Zowel youtube filmpjes als artikelen
 
 ## Portfolio
 
-www.caspermeloen.nl
+https://www.caspermeloen.nl/
 
 ## Download
 
-https://bit.ly/2QaDfeU
+https://www.caspermeloen.nl/?page=fpscharactercontroller
+
+[Dropbox](https://www.dropbox.com/s/9qvr7kcbdg9395l/FirstPersonShooterCharacterController%20V3.zip?dl=0)
+
+[Google Drive](https://drive.google.com/file/d/1-tI1JJIsSL_n0OeH43J4ZT0Aiiy-purk/view?usp=sharing)
+
+## Playable Version - not recommended
+
+https://www.caspermeloen.nl/?page=fpscharactercontrollerplay
