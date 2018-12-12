@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CM.Previous;
 
 namespace CM.Shooter
 {
@@ -10,26 +11,35 @@ namespace CM.Shooter
 		[SerializeField] private string _reloadingState = "Reload";
 		[SerializeField] private string _isReloadingParam = "IsReloading";
 
-
-		private WeaponReload _weaponReload;
-		private AnimatorStateInfo _previousAnimatorState;
+		//private AnimatorStateInfo _previousAnimatorState;
+		private PreviousAnimatorStateInfo _previousAnimatorStateInfo;
 
 		private void Awake()
 		{
-			_weaponReload = GetComponent<WeaponReload>();
+			_previousAnimatorStateInfo = new PreviousAnimatorStateInfo(_animator);
+		}
+
+		private void Start()
+		{
+			WeaponReload weaponReload = GetComponent<WeaponReload>();
+			weaponReload.OnReloadStart += OnReloadStart;
+			weaponReload.OnReloadFinish += OnReloadFinish;
 		}
 
 		private void Update()
 		{
-			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingState) && _previousAnimatorState.IsName(_reloadingState))
-			{
-				if (_weaponReload)
-					_weaponReload.FinishReloading();
-			}
+			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingState) && _previousAnimatorStateInfo.Value.IsName(_reloadingState))
+				GetComponent<WeaponReload>().FinishReloading();
+		}
 
-			_animator.SetBool(_isReloadingParam, _weaponReload.IsReloading);
+		private void OnReloadStart()
+		{
+			_animator.SetBool(_isReloadingParam, true);
+		}
 
-			_previousAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
+		private void OnReloadFinish()
+		{
+			_animator.SetBool(_isReloadingParam, false);
 		}
 	}
 }

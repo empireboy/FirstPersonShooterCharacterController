@@ -10,10 +10,12 @@ namespace CM.Shooter
 
 		private void Start()
 		{
+			transform.root.GetComponentInChildren<WeaponShoot>().OnShoot += OnShoot;
+
 			_weaponTransformLock.Set(_weaponTransformLockData);
 		}
 
-		public void OnShoot()
+		private void OnShoot()
 		{
 			_weaponTransformLock.UpdateRandomTransform();
 		}

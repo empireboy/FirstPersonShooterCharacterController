@@ -39,7 +39,7 @@ namespace CM.Essentials.Audio
 			}
 		}
 
-		public void Play()
+		public void PlayWalkAudio()
 		{
 			_audioSource.Play();
 		}

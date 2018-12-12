@@ -9,6 +9,13 @@ namespace CM.Shooter
 		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private Ammo _ammo;
 
+		public delegate void ShootHandler();
+		public event ShootHandler OnShoot;
+		public delegate void ShootStartHandler();
+		public event ShootStartHandler OnShootStart;
+		public delegate void ShootStopHandler();
+		public event ShootStopHandler OnShootStop;
+
 		private bool _isShooting = false;
 		public bool IsShooting
 		{
@@ -42,7 +49,11 @@ namespace CM.Shooter
 
 			_isShooting = true;
 
-			SendMessage("OnShoot", SendMessageOptions.DontRequireReceiver);
+			if (OnShoot != null)
+				OnShoot();
+
+			if (OnShootStart != null)
+				OnShootStart();
 
 			_ammo.ReduceClipSize();
 
@@ -59,6 +70,9 @@ namespace CM.Shooter
 		public void ShootStop()
 		{
 			_isShooting = false;
+
+			if (OnShootStop != null)
+				OnShootStop();
 		}
 	}
 }

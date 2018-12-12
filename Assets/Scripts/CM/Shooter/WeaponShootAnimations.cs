@@ -9,11 +9,21 @@ namespace CM.Shooter
 		[Header("Animation Parameters")]
 		[SerializeField] private string _isShootingParam = "IsShooting";
 
-		[SerializeField] private WeaponShoot _weaponShoot;
-
-		private void Update()
+		private void Start()
 		{
-			_animator.SetBool(_isShootingParam, _weaponShoot.IsShooting);
+			WeaponShoot weaponShoot = GetComponent<WeaponShoot>();
+			weaponShoot.OnShootStart += OnShootStart;
+			weaponShoot.OnShootStop += OnShootStop;
+		}
+
+		private void OnShootStart()
+		{
+			_animator.SetBool(_isShootingParam, true);
+		}
+
+		private void OnShootStop()
+		{
+			_animator.SetBool(_isShootingParam, false);
 		}
 	}
 }

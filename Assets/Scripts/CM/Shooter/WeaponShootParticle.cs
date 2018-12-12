@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using CM.Orientation;
 
 namespace CM.Shooter
 {
@@ -7,7 +6,18 @@ namespace CM.Shooter
 	{
 		[SerializeField] private ParticleSystem _muzzleFlash;
 
-		public void OnShoot()
+		private void Awake()
+		{
+			if (!_muzzleFlash)
+				enabled = false;
+		}
+
+		private void Start()
+		{
+			transform.root.GetComponentInChildren<WeaponShoot>().OnShoot += OnShoot;
+		}
+
+		private void OnShoot()
 		{
 			_muzzleFlash.Play();
 		}

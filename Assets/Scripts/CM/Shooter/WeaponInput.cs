@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using CM.Orientation;
 
 namespace CM.Shooter
 {
 	public class WeaponInput : MonoBehaviour
 	{
-		[SerializeField] private TransformLock _weaponTransformLock;
-
 		public string shootKey = "Shoot";
 		public string reloadKey = "Reload";
 
@@ -22,7 +19,7 @@ namespace CM.Shooter
 				SendMessage("OnResetTransformLockRandomizer", SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonDown(reloadKey))
-				SendMessage("OnReload", SendMessageOptions.DontRequireReceiver);
+				SendMessage("StartReloading", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }

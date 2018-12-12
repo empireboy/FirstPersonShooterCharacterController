@@ -12,6 +12,13 @@ namespace CM.Shooter
 
 		[SerializeField] private RigidbodyMovement _rigidbodyMovement;
 
+		private void Start()
+		{
+			//MovementBase movement = transform.root.GetComponentInChildren<MovementBase>();
+			//movement.OnMoveStart += OnMoveStart;
+			//movement.OnMoveStop += OnMoveStop;
+		}
+
 		private void Update()
 		{
 			_animator.SetBool(_isMovingParam, _rigidbodyMovement.IsMoving);
