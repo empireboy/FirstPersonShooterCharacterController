@@ -74,5 +74,11 @@ namespace CM.Shooter
 			if (OnShootStop != null)
 				OnShootStop();
 		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawRay(_shootPoint.position, _shootPoint.transform.forward * 100);
+		}
 	}
 }

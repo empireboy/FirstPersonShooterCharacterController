@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using CM.Previous;
 
 namespace CM.Shooter
 {
@@ -11,12 +10,11 @@ namespace CM.Shooter
 		[SerializeField] private string _reloadingState = "Reload";
 		[SerializeField] private string _isReloadingParam = "IsReloading";
 
-		//private AnimatorStateInfo _previousAnimatorState;
-		private PreviousAnimatorStateInfo _previousAnimatorStateInfo;
+		private PreviousValue<AnimatorStateInfo> p_animatorStateInfo;
 
 		private void Awake()
 		{
-			_previousAnimatorStateInfo = new PreviousAnimatorStateInfo(_animator);
+			p_animatorStateInfo = new PreviousValue<AnimatorStateInfo>();
 		}
 
 		private void Start()
@@ -28,7 +26,9 @@ namespace CM.Shooter
 
 		private void Update()
 		{
-			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_reloadingState) && _previousAnimatorStateInfo.Value.IsName(_reloadingState))
+			p_animatorStateInfo.value = _animator.GetCurrentAnimatorStateInfo(0);
+
+			if (!p_animatorStateInfo.value.IsName(_reloadingState) && p_animatorStateInfo.Previous.IsName(_reloadingState))
 				GetComponent<WeaponReload>().FinishReloading();
 		}
 

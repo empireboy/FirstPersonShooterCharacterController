@@ -15,7 +15,7 @@ namespace CM.Orientation
 		private bool _isInputMagnitudeGettingBigger = false;
 		private bool _isInputMagnitudeGettingSmaller = false;
 		private bool _sidewaysMovement = false;
-		private float _previousInputMagnitude;
+		private PreviousValue<float> p_inputMagnitude;
 
 		private float _currentSpeed;
 
@@ -24,6 +24,7 @@ namespace CM.Orientation
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
+			p_inputMagnitude = new PreviousValue<float>();
 		}
 
 		private void Start()
@@ -43,6 +44,9 @@ namespace CM.Orientation
 			// Slower or faster sideways movement
 			_input = new Vector3(_input.x * _sidewaysMovementFactor, _input.y, _input.z);
 
+			// Get input magnitude and previous input magnitude
+			p_inputMagnitude.value = _input.magnitude;
+
 			// Slower or faster sideways animation
 			if (_movementAnimations)
 			{
@@ -58,10 +62,9 @@ namespace CM.Orientation
 				}
 			}
 
-			isMoving = ((_input.magnitude > _previousInputMagnitude) || (Mathf.Approximately(_input.magnitude, _previousInputMagnitude) && _input.magnitude > 0)) ? true : false;
+			isMoving = ((p_inputMagnitude.value > p_inputMagnitude.Previous) || (Mathf.Approximately(p_inputMagnitude.value, p_inputMagnitude.Previous) && p_inputMagnitude.value > 0)) ? true : false;
 
 			_input = transform.TransformDirection(_input);
-			_previousInputMagnitude = _input.magnitude;
 		}
 
 		private void FixedUpdate()

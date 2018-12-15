@@ -9,13 +9,6 @@ namespace CM.Orientation
 
 		protected Vector3 inputs;
 
-		private void Update()
-		{
-			inputs = Vector3.zero;
-			inputs.x = Input.GetAxis(horizontalAxis);
-			inputs.z = Input.GetAxis(verticalAxis);
-		}
-
 		public Vector3 GetInput()
 		{
 			return inputs;
