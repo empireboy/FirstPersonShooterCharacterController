@@ -13787,6 +13787,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13876,6 +13877,18 @@ MonoBehaviour:
   invertX: 0
   _horizontalAxes: Mouse X
   _verticalAxes: Mouse Y
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404797eee411c99488e6190e95d8add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 91cefa5ad38dd7c40ad4037e7212c1bf, type: 2}
 --- !u!1 &537585801
 GameObject:
   m_ObjectHideFlags: 0
