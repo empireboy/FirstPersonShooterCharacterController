@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace CM.Shader
 {
-	[ExecuteInEditMode]
 	public class PostEffect : MonoBehaviour
 	{
 		[SerializeField] private Material _material;

@@ -1,4 +1,4 @@
-﻿Shader "Custom/DrunkShader"
+﻿Shader "Custom/PageTurnShader"
 {
 	Properties
 	{
@@ -47,7 +47,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv + float2(0, sin(i.vertex.x/50 + _Time[1]/2)/100));
+				fixed4 col = tex2D(_MainTex, i.uv + float2(0, tan(i.vertex.x/1000 + _Time[1]*2)/100));
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
