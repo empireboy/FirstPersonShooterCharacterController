@@ -4,9 +4,7 @@ namespace CM.Shooter
 {
 	public class WeaponShoot : MonoBehaviour
 	{
-		[SerializeField] private Transform _shootPoint;
 		[SerializeField] private float _shootRate = 0.5f;
-		[SerializeField] private float _shootRange = 100;
 		[SerializeField] private Ammo _ammo;
 
 		public delegate void ShootHandler();
@@ -57,13 +55,6 @@ namespace CM.Shooter
 
 			_ammo.ReduceClipSize();
 
-			RaycastHit hit;
-
-			if (Physics.Raycast(_shootPoint.position, _shootPoint.transform.forward, out hit, _shootRange))
-			{
-				Destroy(hit.transform.gameObject);
-			}
-
 			_shootTimer = 0;
 		}
 
@@ -73,12 +64,6 @@ namespace CM.Shooter
 
 			if (OnShootStop != null)
 				OnShootStop();
-		}
-
-		private void OnDrawGizmos()
-		{
-			Gizmos.color = Color.blue;
-			Gizmos.DrawRay(_shootPoint.position, _shootPoint.transform.forward * 100);
 		}
 	}
 }
